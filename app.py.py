@@ -6,7 +6,7 @@ import plotly.express as px
 
 # Page configuration
 st.set_page_config(
-    page_title="Climate-Aware Malaria Prediction System",
+    page_title="🦟 Climate-Aware Malaria Prediction & Explainable Healthcare AI System",
     page_icon="🦟",
     layout="wide"
 )
