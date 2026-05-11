@@ -53,7 +53,6 @@ page = st.sidebar.radio(
         "Dashboard Overview",
         "Geographic Risk Map",
         "Prediction Tool",
-        "What-If Policy Simulation",
         "SHAP Explainability",
         "Policy Recommendations"
     ]
