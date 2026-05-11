@@ -211,7 +211,7 @@ elif page == "What-If Policy Simulation":
         columns=[target, "high_risk_region", "malaria_cases_reported"],
         errors="ignore"
     )
-
+    baseline_X = baseline_X.fillna(0)
     baseline_prediction = model.predict(baseline_X)[0]
 
     st.subheader("Baseline Prediction")
@@ -233,7 +233,7 @@ elif page == "What-If Policy Simulation":
             scenario_X[sanitation_col] + sanitation_increase,
             100
         )
-
+    scenario_X = scenario_X.fillna(0)
     scenario_prediction = model.predict(scenario_X)[0]
     reduction = baseline_prediction - scenario_prediction
 
