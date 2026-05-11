@@ -53,6 +53,7 @@ page = st.sidebar.radio(
         "Dashboard Overview",
         "Geographic Risk Map",
         "Prediction Tool",
+        "What-If Policy Simulation",
         "SHAP Explainability",
         "Policy Recommendations"
     ]
@@ -195,7 +196,92 @@ elif page == "Prediction Tool":
             f"Actual Recorded Malaria Incidence: {actual_value:.2f} per 1,000 population at risk"
         )
 
+# What-If Policy Simulation
+elif page == "What-If Policy Simulation":
 
+    st.title("🧪 What-If Policy Simulation")
+
+    country = st.selectbox(
+        "Select Country",
+        sorted(df["country"].unique())
+    )
+
+    country_df = df[df["country"] == country]
+
+    year = st.selectbox(
+        "Select Year",
+        sorted(country_df["year"].unique())
+    )
+
+    sample = country_df[
+        country_df["year"] == year
+    ].copy()
+
+    baseline_X = sample.drop(
+        columns=[
+            target,
+            "high_risk_region",
+            "malaria_cases_reported"
+        ],
+        errors="ignore"
+    )
+
+    # Ensure missing values are handled
+    baseline_X = baseline_X.fillna(0)
+
+    baseline_prediction = model.predict(
+        baseline_X
+    )[0]
+
+    st.subheader("Baseline Prediction")
+
+    st.metric(
+        "Current Predicted Malaria Incidence",
+        f"{baseline_prediction:.2f}"
+    )
+
+    sanitation_col = (
+        "people_using_at_least_basic_sanitation_services_percent_of_population"
+    )
+
+    sanitation_increase = st.slider(
+        "Increase Basic Sanitation Access (%)",
+        0,
+        50,
+        20
+    )
+
+    scenario_X = baseline_X.copy()
+
+    if sanitation_col in scenario_X.columns:
+
+        scenario_X[sanitation_col] = np.minimum(
+            scenario_X[sanitation_col] + sanitation_increase,
+            100
+        )
+
+    # Ensure no missing values
+    scenario_X = scenario_X.fillna(0)
+
+    scenario_prediction = model.predict(
+        scenario_X
+    )[0]
+
+    reduction = (
+        baseline_prediction -
+        scenario_prediction
+    )
+
+    st.subheader("Scenario Prediction")
+
+    st.metric(
+        "Predicted Incidence After Intervention",
+        f"{scenario_prediction:.2f}"
+    )
+
+    st.success(
+        f"Estimated Reduction: {reduction:.2f} per 1,000 population at risk"
+    )
 # SHAP Explainability
 elif page == "SHAP Explainability":
 
