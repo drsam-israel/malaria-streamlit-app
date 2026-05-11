@@ -31,7 +31,7 @@ if "country_encoded" not in df.columns:
 target = "incidence_of_malaria_per_1000_population_at_risk"
 
 # Main title
-st.title("🦟 Climate-Aware Malaria Prediction System")
+st.title("🦟 Climate-Aware Malaria Prediction & Explainable Healthcare AI System")
 
 st.write("""
 This dashboard predicts malaria incidence across African countries using climate,
@@ -40,7 +40,7 @@ demographic, healthcare, temporal, and spatial indicators.
 
 # Sidebar Branding
 st.sidebar.markdown("## 🦟 DHA Capstone Project")
-st.sidebar.markdown("Climate-Aware Malaria Prediction System")
+st.sidebar.markdown("Climate-Aware Malaria Prediction System & Explainable Healthcare AI System")
 st.sidebar.markdown("---")
 
 # Sidebar Navigation
