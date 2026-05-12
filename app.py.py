@@ -324,7 +324,26 @@ elif page == "SHAP Explainability":
     helping support targeted intervention planning, climate-informed surveillance,
     and public health resource allocation.
     """)
+st.subheader("SHAP Waterfall Interpretation")
 
+st.image(
+    "shap_waterfall.png",
+    use_container_width=True
+)
+
+st.subheader("Explainable Healthcare AI")
+
+st.image(
+    "explainable_ai_summary.png",
+    use_container_width=True
+)
+
+st.subheader("Key Impact")
+
+st.image(
+    "key_impact.png",
+    use_container_width=True
+)
 # Policy Recommendations
 elif page == "Policy Recommendations":
 
