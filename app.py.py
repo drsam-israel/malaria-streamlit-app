@@ -341,7 +341,7 @@ elif page == "SHAP Explainability":
 
     st.subheader("SHAP Waterfall Interpretation")
 
-        st.subheader("Interactive SHAP Waterfall Interpretation")
+    st.subheader("Interactive SHAP Waterfall Interpretation")
 
     shap_data = pd.DataFrame({
         "Feature": [
