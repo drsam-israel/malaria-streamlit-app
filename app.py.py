@@ -345,20 +345,43 @@ elif page == "SHAP Explainability":
         "shap_waterfall.png",
         use_container_width=True
     )
+        st.subheader("Explainable Healthcare AI")
 
-    st.subheader("Explainable Healthcare AI")
+    col1, col2 = st.columns(2)
 
-    st.image(
-        "explainable_ai_summary.png",
-        use_container_width=True
-    )
+    with col1:
+        st.markdown("""
+        ### Prediction Summary
 
-    st.subheader("Key Impact")
+        - Predicted malaria incidence: **426.22 per 1,000 population at risk**
+        - Baseline average prediction: **190.05 per 1,000 population at risk**
+        - Strongest predictor: **Previous Malaria Incidence**
+        - SHAP contribution: **+208.75 SHAP units**
+        - Demonstrated strong temporal persistence in malaria transmission.
+        """)
 
-    st.image(
-        "key_impact.png",
-        use_container_width=True
-    )
+    with col2:
+        st.markdown("""
+        ### Additional Contributing Factors
+
+        - Longitude-rainfall interaction: **+7.76**
+        - Country encoding: **+3.55**
+        - Climate risk index: **+2.90**
+        - Longitude: **+2.00**
+        - Sanitation access: **+1.79**
+        - Rainfall-rural interaction: **+1.48**
+        """)
+
+        st.subheader("Key Impact")
+
+        st.success("""
+        SHAP analysis improved model interpretability and strengthened the system’s applicability for:
+
+    - Healthcare decision support
+    - Malaria surveillance
+    - Intervention planning
+    - Public health policy development
+    """)
 # Policy Recommendations
 if page == "Policy Recommendations":
 
