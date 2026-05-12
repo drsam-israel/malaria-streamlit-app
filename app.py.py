@@ -339,63 +339,9 @@ elif page == "SHAP Explainability":
     and public health resource allocation.
     """)
 
-    st.subheader("HEALTHCARE AI")
+    st.subheader("Healthcare AI Interpretation")
 
-    st.subheader("Interactive SHAP Waterfall Interpretation")
-
-    shap_data = pd.DataFrame({
-        "Feature": [
-            "Previous Malaria Incidence",
-            "Longitude-Rainfall Interaction",
-            "Country Encoding",
-            "Climate Risk Index",
-            "Longitude",
-            "Sanitation Access",
-            "Rainfall-Rural Interaction",
-            "Malaria Incidence Lag 2",
-            "Urban Population",
-            "Other Features"
-        ],
-        "SHAP Contribution": [
-            208.75,
-            7.76,
-            3.55,
-            2.90,
-            2.00,
-            1.79,
-            1.48,
-            1.38,
-            1.18,
-            5.38
-        ]
-    })
-
-    fig_shap = px.bar(
-        shap_data,
-        x="SHAP Contribution",
-        y="Feature",
-        orientation="h",
-        title="Interactive SHAP Feature Contributions",
-        text="SHAP Contribution"
-    )
-
-    fig_shap.update_layout(
-        yaxis=dict(autorange="reversed"),
-        xaxis_title="Contribution to Predicted Malaria Incidence",
-        yaxis_title="Feature",
-        height=600
-    )
-
-    st.plotly_chart(
-        fig_shap,
-        use_container_width=True
-    )
-
-    st.info("""
-    Interpretation: Positive SHAP values increase the predicted malaria incidence.
-    Previous malaria incidence was the strongest driver, contributing approximately
-    +208.75 units toward the final prediction of 426.22 cases per 1,000 population at risk.
-    """)
+    
     st.subheader("Interactive SHAP Waterfall Explanation")
 
     features = [
