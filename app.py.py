@@ -362,7 +362,7 @@ elif page == "SHAP Explainability":
 
     with col2:
         st.markdown("""
-        ### Additional Contributing Factors
+        ### Other Contributing Features
 
         - Longitude-rainfall interaction: **+7.76**
         - Country encoding: **+3.55**
