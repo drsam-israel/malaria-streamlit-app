@@ -345,7 +345,7 @@ elif page == "SHAP Explainability":
         "shap_waterfall.png",
         use_container_width=True
     )
-        st.subheader("Explainable Healthcare AI")
+    st.subheader("Explainable Healthcare AI")
 
     col1, col2 = st.columns(2)
 
