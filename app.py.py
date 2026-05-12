@@ -76,8 +76,8 @@ if page == "Home":
     - Public health policy simulation
     - Geographic malaria risk mapping
     """)
-    st.success("""
-    Key Insights:
+     st.success("""
+     Key Insights:
     - Previous malaria incidence was the strongest predictor.
     - Climate-related variables significantly influenced malaria risk.
     - SHAP explainability improved healthcare AI transparency.
