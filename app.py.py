@@ -263,7 +263,7 @@ elif page == "What-If Policy Simulation":
     while recognizing that malaria transmission is also influenced by rainfall,
     temperature, geography, historical burden, and healthcare access.
     """)
-# SHAP Explainability
+ # SHAP Explainability
 elif page == "SHAP Explainability":
 
     st.title("🧠 SHAP Explainability")
@@ -296,6 +296,7 @@ elif page == "SHAP Explainability":
             "Rainfall",
             "Water Access"
         ],
+
         "Interpretation": [
             "Historical malaria burden strongly influences future malaria incidence.",
             "Climate suitability increases malaria transmission risk.",
@@ -308,7 +309,10 @@ elif page == "SHAP Explainability":
         ]
     })
 
-    st.dataframe(shap_features, use_container_width=True)
+    st.dataframe(
+        shap_features,
+        use_container_width=True
+    )
 
     st.subheader("Public Health Interpretation")
 
@@ -324,26 +328,27 @@ elif page == "SHAP Explainability":
     helping support targeted intervention planning, climate-informed surveillance,
     and public health resource allocation.
     """)
-st.subheader("SHAP Waterfall Interpretation")
 
-st.image(
-    "shap_waterfall.png",
-    use_container_width=True
-)
+    st.subheader("SHAP Waterfall Interpretation")
 
-st.subheader("Explainable Healthcare AI")
+    st.image(
+        "shap_waterfall.png",
+        use_container_width=True
+    )
 
-st.image(
-    "explainable_ai_summary.png",
-    use_container_width=True
-)
+    st.subheader("Explainable Healthcare AI")
 
-st.subheader("Key Impact")
+    st.image(
+        "explainable_ai_summary.png",
+        use_container_width=True
+    )
 
-st.image(
-    "key_impact.png",
-    use_container_width=True
-)
+    st.subheader("Key Impact")
+
+    st.image(
+        "key_impact.png",
+        use_container_width=True
+    )
 # Policy Recommendations
 if page == "Policy Recommendations":
 
