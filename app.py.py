@@ -66,7 +66,7 @@ if page == "Home":
      col1.metric("Countries", 54)
      col2.metric("Records", 594)
      col3.metric("Model R²", "0.87")
-    st.markdown("""
+     st.markdown("""
     ## Project Features
 
     - Climate-aware malaria prediction
