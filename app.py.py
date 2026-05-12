@@ -345,7 +345,7 @@ st.image(
     use_container_width=True
 )
 # Policy Recommendations
-elif page == "Policy Recommendations":
+if page == "Policy Recommendations":
 
     st.title("🏥 Policy Recommendations")
 
