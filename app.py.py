@@ -396,7 +396,7 @@ elif page == "SHAP Explainability":
     Previous malaria incidence was the strongest driver, contributing approximately
     +208.75 units toward the final prediction of 426.22 cases per 1,000 population at risk.
     """)
-        st.subheader("Interactive SHAP Waterfall Explanation")
+    st.subheader("Interactive SHAP Waterfall Explanation")
 
     features = [
         "Baseline Prediction",
