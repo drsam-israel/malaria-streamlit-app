@@ -339,7 +339,7 @@ elif page == "SHAP Explainability":
     and public health resource allocation.
     """)
 
-    st.subheader("SHAP Waterfall Interpretation")
+    st.subheader("HEALTHCARE AI")
 
     st.subheader("Interactive SHAP Waterfall Interpretation")
 
@@ -395,6 +395,95 @@ elif page == "SHAP Explainability":
     Interpretation: Positive SHAP values increase the predicted malaria incidence.
     Previous malaria incidence was the strongest driver, contributing approximately
     +208.75 units toward the final prediction of 426.22 cases per 1,000 population at risk.
+    """)
+        st.subheader("Interactive SHAP Waterfall Explanation")
+
+    features = [
+        "Baseline Prediction",
+        "Previous Malaria Incidence",
+        "Longitude-Rainfall Interaction",
+        "Country Encoding",
+        "Climate Risk Index",
+        "Longitude",
+        "Sanitation Access",
+        "Rainfall-Rural Interaction",
+        "Malaria Incidence Lag 2",
+        "Urban Population",
+        "Other Features",
+        "Final Prediction"
+    ]
+
+    values = [
+        190.05,
+        208.75,
+        7.76,
+        3.55,
+        2.90,
+        2.00,
+        1.79,
+        1.48,
+        1.38,
+        1.18,
+        5.38,
+        426.22
+    ]
+
+    measures = [
+        "absolute",
+        "relative",
+        "relative",
+        "relative",
+        "relative",
+        "relative",
+        "relative",
+        "relative",
+        "relative",
+        "relative",
+        "relative",
+        "total"
+    ]
+
+    fig_waterfall = go.Figure(
+        go.Waterfall(
+            name="SHAP Explanation",
+            orientation="v",
+            measure=measures,
+            x=features,
+            y=values,
+            text=[
+                "190.05",
+                "+208.75",
+                "+7.76",
+                "+3.55",
+                "+2.90",
+                "+2.00",
+                "+1.79",
+                "+1.48",
+                "+1.38",
+                "+1.18",
+                "+5.38",
+                "426.22"
+            ],
+            textposition="outside"
+        )
+    )
+
+    fig_waterfall.update_layout(
+        title="Interactive SHAP Waterfall Explanation for Malaria Incidence Prediction",
+        xaxis_title="Model Features",
+        yaxis_title="Predicted Malaria Incidence Contribution",
+        height=650
+    )
+
+    st.plotly_chart(
+        fig_waterfall,
+        use_container_width=True
+    )
+
+    st.info("""
+    Interpretation: The baseline model prediction was approximately 190.05 cases per 1,000 population at risk.
+    Previous malaria incidence contributed the largest increase, adding about +208.75 units.
+    The final prediction increased to approximately 426.22 cases per 1,000 population at risk.
     """)
     st.subheader("Explainable Healthcare AI")
 
