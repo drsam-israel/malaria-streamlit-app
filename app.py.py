@@ -342,7 +342,7 @@ elif page == "SHAP Explainability":
     st.subheader("Healthcare AI Interpretation")
 
     
-    st.subheader("Interactive SHAP Waterfall Explanation")
+  
 
     features = [
         "Baseline Prediction",
