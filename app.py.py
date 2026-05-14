@@ -263,6 +263,7 @@ elif page == "Prediction Tool":
 
         except Exception as e:
             st.error("Prediction could not be generated.")
+            st.exception(e)
 
             st.info("""
             The selected record may not match the exact feature structure expected by the trained model pipeline.
