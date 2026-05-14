@@ -261,7 +261,7 @@ elif page == "Prediction Tool":
                     "The model prediction matches the recorded value."
                 )
 
-            except Exception:
+        except Exception:
 
             st.warning("""
             Prediction module is currently running in demo-safe mode due to deployment pipeline compatibility.
