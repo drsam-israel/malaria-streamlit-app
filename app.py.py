@@ -11,7 +11,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Load dataset
+ # Load dataset
 @st.cache_data
 def load_data():
     return pd.read_csv("advanced_feature_engineered_malaria_dataset.csv")
