@@ -23,7 +23,18 @@ def load_model():
 
 df = load_data()
 model = load_model()
+target = "incidence_of_malaria_per_1000_population_at_risk"
 
+drop_cols = [
+    target,
+    "malaria_cases_reported",
+    "high_risk_region"
+]
+
+feature_columns = [
+    col for col in df.columns
+    if col not in drop_cols
+]
 # Ensure country_encoded exists for the saved model pipeline
 if "country_encoded" not in df.columns:
     df["country_encoded"] = df["country"].astype("category").cat.codes
