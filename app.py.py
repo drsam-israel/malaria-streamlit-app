@@ -190,6 +190,10 @@ elif page == "Prediction Tool":
 
     st.title("🔮 Malaria Incidence Prediction Tool")
 
+    st.markdown("""
+    Select a country and year to generate a malaria incidence prediction using the trained machine learning pipeline.
+    """)
+
     country = st.selectbox(
         "Select Country",
         sorted(df["country"].dropna().unique())
@@ -209,23 +213,24 @@ elif page == "Prediction Tool":
 
     if st.button("Predict Malaria Incidence"):
 
-        X_sample = sample.drop(
-            columns=[
-                target,
-                "high_risk_region",
-                "malaria_cases_reported"
-            ],
-            errors="ignore"
-        )
+        target = "incidence_of_malaria_per_1000_population_at_risk"
+
+        drop_cols = [
+            target,
+            "malaria_cases_reported",
+            "high_risk_region"
+        ]
+
+        feature_columns = [
+            col for col in df.columns
+            if col not in drop_cols
+        ]
+
+        X_sample = sample[feature_columns].copy()
 
         # Replace missing and infinite values before prediction
         X_sample = X_sample.replace([np.inf, -np.inf], np.nan)
         X_sample = X_sample.fillna(0)
-
-        # Keep only numeric columns if pipeline expects numeric model-ready data
-        for col in X_sample.columns:
-            if X_sample[col].dtype == "object":
-                X_sample[col] = X_sample[col].astype("category").cat.codes
 
         try:
             prediction = model.predict(X_sample)[0]
@@ -236,20 +241,32 @@ elif page == "Prediction Tool":
 
             if target in sample.columns:
                 actual_value = sample[target].values[0]
+
                 st.info(
                     f"Actual Recorded Malaria Incidence: {actual_value:.2f} per 1,000 population at risk"
                 )
 
+            difference = prediction - actual_value
+
+            if difference > 0:
+                st.warning(
+                    f"The model prediction is {difference:.2f} higher than the recorded value."
+                )
+            elif difference < 0:
+                st.info(
+                    f"The model prediction is {abs(difference):.2f} lower than the recorded value."
+                )
+            else:
+                st.success(
+                    "The model prediction matches the recorded value."
+                )
+
         except Exception as e:
-            st.warning("""
-            Prediction could not be generated for this selected record because the deployed model
-            expects a specific feature structure from the training pipeline.
-            """)
+            st.error("Prediction could not be generated.")
 
             st.info("""
-            This prediction module has been safely handled to prevent app crashes. 
-            The dashboard still supports malaria trend analysis, geographic risk mapping,
-            SHAP explainability, and policy simulation.
+            The selected record may not match the exact feature structure expected by the trained model pipeline.
+            This has been safely handled to prevent the dashboard from crashing.
             """)
 
 
